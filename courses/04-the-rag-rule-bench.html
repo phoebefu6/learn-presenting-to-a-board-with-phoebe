@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 4 of 6. A computed RAG rule bench on 30 real months of NHS England's four-hour A&E figure: change the target, the tolerance band, the rule and the trend window, and watch the same months change colour.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The RAG rule bench - learn presenting to a board with phoebe">
+<meta property="og:description" content="Session 4 of 6. The same 30 real months print 0 greens or 21 greens depending on the rule. Find the green months that were getting worse, and see what a board misses when it is shown one month.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/courses/04-the-rag-rule-bench.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The RAG rule bench - learn presenting to a board with phoebe">
+<meta name="twitter:description" content="Session 4 of 6. Red, amber, green is a rule you choose. Computed in your browser on real public rows.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 4 · The RAG rule bench - learn presenting to a board with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=3">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-presenting-to-a-board-with-phoebe</a> / Session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Presenting to a Board with Phoebe · Session 4 of 6</div>
+    <h1>The RAG rule <span class="accent">bench</span></h1>
+    <p class="sub">Session 3 chose which numbers belong in the pack. Tonight we test the colour that sits next to them. The bench below takes 30 real months of one public number with a published target, and gives every month a red, amber or green status under a rule you choose. Change the target, the tolerance band, the rule or the trend window, and watch the same months change colour. Then find the green months that were getting worse, and see what a board misses when it is shown only the latest month.</p>
+    <div class="chip-row">
+      <span class="chip level">🔴 Bench night</span>
+      <span class="chip audience">Bring one KPI from your own board or committee pack</span>
+      <span class="chip audience">No code tonight, all clicking</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:2">3-12 · How a rule turns a number into a colour</span>
+      <span class="a3" style="flex:6">12-38 · The bench, rule by rule</span>
+      <span class="a4" style="flex:2">38-45 · The limits, and Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Fernhollow Freight's board pack carries a RAG status beside every KPI, and Sunniva will be asked what makes hers green. Fernhollow's numbers are constructed, though, and a constructed series can be tuned to any lesson. So tonight's bench runs on a real one: NHS England's monthly share of A&amp;E attendances seen within four hours, England, all A&amp;E types. It has a formal target, a set of interim milestones that moved year to year, and 30 rated months from April 2024 to September 2026. Nothing about it is modelled. What you choose is the rule.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">computed = worked out from the real rows</span>
+      <span class="pill">convention = a setting reporting practice chooses</span>
+      <span class="pill">assumption = the model's own choice, labelled</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A clear picture of how far one honest series can be recoloured by the rule alone, the count of months a generous rule paints green while the number is falling, what a board sees when it is shown one month instead of the series, and a written rule for one KPI of your own: target, tolerance, trend window, and the sentence that explains it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the data, the target and the three rules</span>
+      <h2>How a rule turns a number into a colour</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">A RAG status is not a measurement. It is a number passed through a rule: compare it with a target, allow some tolerance, perhaps look at its direction. Change any part of the rule and the colour changes while the number stays exactly where it was.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One real month, September 2026, 74.4 percent of A and E attendances within four hours, against an 82 percent milestone. Three rules rate it. Level with a 2-point tolerance band: red, because 74.4 is under 78.0. Trend over 6 months: red, down 2.75 points. Trend over 9 months: green, up 0.52 points.">
+        <defs>
+          <filter id="p4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p4aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#3E4774" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#1C2033" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p4aH { font: 800 12px Inter, sans-serif; fill: #1C2033; }
+          .p4aL { font: 600 12px Inter, sans-serif; fill: #1C2033; }
+          .p4aS { font: 400 11px Inter, sans-serif; fill: #585D72; }
+          .p4aA { font: 700 11px Inter, sans-serif; fill: #574108; }
+          .p4aV { font: 800 20px Inter, sans-serif; fill: #2A3156; }
+          .p4aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .p4aN { font: 400 12px Inter, sans-serif; fill: #585D72; }
+        </style>
+
+        <text class="p4aH" x="30" y="26">ONE MONTH, THREE RULES · the number does not move, the colour does</text>
+
+        <g filter="url(#p4aSk)" fill="none" stroke="#1C2033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="70" width="210" height="140" rx="10" transform="rotate(-0.6 145 140)" fill="url(#p4aHc)"/>
+          <rect x="330" y="50" width="510" height="56" rx="8" transform="rotate(0.3 585 78)" fill="#FFFFFF"/>
+          <rect x="330" y="122" width="510" height="56" rx="8" transform="rotate(-0.3 585 150)" fill="#FFFFFF"/>
+          <rect x="330" y="194" width="510" height="56" rx="8" transform="rotate(0.3 585 222)" fill="#EEF0F7"/>
+          <rect x="752" y="64" width="72" height="28" rx="6" fill="#991B1B" stroke="#991B1B"/>
+          <rect x="752" y="136" width="72" height="28" rx="6" fill="#991B1B" stroke="#991B1B"/>
+          <rect x="752" y="208" width="72" height="28" rx="6" fill="#276A43" stroke="#276A43"/>
+          <path d="M252 132 L326 80" marker-end="url(#p4aAr)"/>
+          <path d="M252 140 L326 150" marker-end="url(#p4aAr)"/>
+          <path d="M252 148 L326 220" marker-end="url(#p4aAr)"/>
+        </g>
+
+        <text class="p4aA" x="56" y="96">REAL ROW, NHS ENGLAND</text>
+        <text class="p4aL" x="56" y="120">September 2026</text>
+        <text class="p4aV" x="56" y="150">74.4%</text>
+        <text class="p4aS" x="56" y="172">within four hours</text>
+        <text class="p4aS" x="56" y="190">milestone this year: 82.0%</text>
+
+        <text class="p4aL" x="346" y="74">Level, 2-point tolerance band</text>
+        <text class="p4aS" x="346" y="94">74.4 is under 78.0, the milestone minus two bands</text>
+        <text class="p4aL" x="346" y="146">Trend, 6-month window</text>
+        <text class="p4aS" x="346" y="166">down 2.75 points since March 2026</text>
+        <text class="p4aL" x="346" y="218">Trend, 9-month window</text>
+        <text class="p4aS" x="346" y="238">up 0.52 points since December 2025</text>
+        <text class="p4aW" x="788" y="83" text-anchor="middle">RED</text>
+        <text class="p4aW" x="788" y="155" text-anchor="middle">RED</text>
+        <text class="p4aW" x="788" y="227" text-anchor="middle">GREEN</text>
+
+        <text class="p4aN" x="30" y="284">Same month, same number: the rule picks the colour. Real rows, NHS England, Open Government Licence v3.0.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - one real month is red under two reasonable rules and green under a third</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The data, and why it can be trusted this far<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The rows come from NHS England's Monthly A&amp;E Time Series, published 8 October 2026: the Performance sheet, column "Percentage in 4 hours or less (all)", for England and all A&amp;E types. NHS England's site terms allow reuse under the Open Government Licence (read at source). The bench ships June 2023 to September 2026 and rates April 2024 onwards, so a 9-month trend always has history.</p>
+        <p>Two checks before trusting it. The series starts in June 2023 because, from May 2019 to May 2023, fourteen trusts stopped reporting four-hour data during a field test of new standards (NHS England's statistics page, read at source), which makes earlier months hard to compare. And the same file, weighted by attendances, gives 74.9% for 2025-26 when the build script checks it; the National Audit Office reports 74.9% for that year (read at source). The rows agree with the auditor.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Which target? There are two, and the second one moved<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The formal standard is 95% of patients within four hours. NHS England's medium term planning framework says it is "over a decade since the service delivered" it, and the NAO says it was last met nationally in 2013-14, at 95.7% (both read at source). Beneath it sit interim milestones from NHS England's planning documents: 76% by March 2024, a minimum of 78% in March 2025, 78% again in March 2026, and every trust at 82% by March 2027 (each read at source).</p>
+        <p>Each milestone is set for March. Comparing every month of the year with it is a reporting convention, and the bench labels it so. A board paper that says "red against target" has already made two choices: which target, and when it applies.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>RAG is a convention, not a standard<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>No statute or code tells a board how to colour a KPI. NHS England's own improvement guide, Making data count (2019, read at source), says its first edition "exposed the limitations" of two-point comparisons and RAG reports, and shows an indicator varying randomly around its target that "would flip between red and green". It also grants RAG summaries their appeal: they are concise. The UK's Infrastructure and Projects Authority calls its delivery ratings a "snapshot in time" and moved from a five-point scale to three (Annual Report 2023-24, read at source).</p>
+        <p>Teach the disagreement honestly. A colour is fast to read and boards ask for it; a colour also throws away the direction, the distance from target and the noise. Nobody has shown that one rule leads to better board decisions than another. The bench cannot settle that. It shows how much the choice moves the picture, so you can choose on purpose and say what you chose.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="bench">
+    <div class="section-kicker">
+      <span class="klabel">Build-along · the bench</span>
+      <h2>Thirty real months, six rules, and yours</h2>
+      <span class="tag demo">★ 26 min · the main event</span>
+    </div>
+    <p class="lede">The bench opens on the interim milestone with a 2-point tolerance band and a 6-month trend window. Work down the steps in order and say out loud what changed before you move on. Every number below is one the bench prints; if your screen shows something else, trust the screen and tell me.</p>
+
+    <div id="brd-bench" data-live-bench></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Green months out of 30 under six presets, on the same real series. Formal target month by month: 0. Interim target month by month: 0. Interim with a 2-point tolerance: 3. Trend only, 6 months: 17. Level and trend together: 3. Green-by-rule, interim with a 5-point tolerance: 21. Months green while declining: 0 for every preset except green-by-rule, which has 7.">
+        <defs>
+          <filter id="p4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="29" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p4bH { font: 800 12px Inter, sans-serif; fill: #1C2033; }
+          .p4bL { font: 600 12px Inter, sans-serif; fill: #1C2033; }
+          .p4bS { font: 400 11px Inter, sans-serif; fill: #585D72; }
+          .p4bV { font: 800 12px Inter, sans-serif; fill: #2A3156; }
+          .p4bR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p4bN { font: 400 12px Inter, sans-serif; fill: #585D72; }
+        </style>
+
+        <text class="p4bH" x="30" y="26">GREEN MONTHS OUT OF 30 · same real rows, six rules</text>
+        <text class="p4bS" x="850" y="46" text-anchor="end">green while declining</text>
+
+        <g filter="url(#p4bSk)" fill="none" stroke="#1C2033" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="60" width="4" height="28" rx="1" fill="#C8CCE2"/>
+          <rect x="260" y="104" width="4" height="28" rx="1" fill="#C8CCE2"/>
+          <rect x="260" y="148" width="42" height="28" rx="4" fill="#C8CCE2"/>
+          <rect x="260" y="192" width="238" height="28" rx="4" transform="rotate(-0.2 379 206)" fill="#C8CCE2"/>
+          <rect x="260" y="236" width="42" height="28" rx="4" fill="#C8CCE2"/>
+          <rect x="260" y="280" width="294" height="28" rx="4" transform="rotate(0.2 407 294)" fill="#7A5C12"/>
+        </g>
+
+        <text class="p4bL" x="240" y="79" text-anchor="end">Formal, month by month</text>
+        <text class="p4bL" x="240" y="123" text-anchor="end">Interim, month by month</text>
+        <text class="p4bL" x="240" y="167" text-anchor="end">Interim, 2-pt tolerance</text>
+        <text class="p4bL" x="240" y="211" text-anchor="end">Trend only, 6 months</text>
+        <text class="p4bL" x="240" y="255" text-anchor="end">Level and trend</text>
+        <text class="p4bL" x="240" y="299" text-anchor="end">Green-by-rule</text>
+        <text class="p4bV" x="276" y="79">0</text>
+        <text class="p4bV" x="276" y="123">0</text>
+        <text class="p4bV" x="314" y="167">3</text>
+        <text class="p4bV" x="510" y="211">17</text>
+        <text class="p4bV" x="314" y="255">3</text>
+        <text class="p4bV" x="566" y="299">21</text>
+        <text class="p4bS" x="810" y="79" text-anchor="middle">0</text>
+        <text class="p4bS" x="810" y="123" text-anchor="middle">0</text>
+        <text class="p4bS" x="810" y="167" text-anchor="middle">0</text>
+        <text class="p4bS" x="810" y="211" text-anchor="middle">0</text>
+        <text class="p4bS" x="810" y="255" text-anchor="middle">0</text>
+        <text class="p4bR" x="810" y="299" text-anchor="middle">7</text>
+
+        <text class="p4bN" x="30" y="334">Bars to scale, 30 months = 420 px. Brass bar: the anti-lever. Numbers as the bench prints them.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the same 30 months print anywhere from 0 to 21 greens, and only the most generous rule hides falling months</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Read the bench as loaded.</strong> Interim milestone, a 2-point band, a 6-month window. Look at the strip under the chart: one cell per month, mostly amber and red.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · the default rule</span>Under this rule, 30 rated months: 3 green, 13 amber, 14 red.
+0 months are green while the 6-month trend is down
+half a point or more.</div>
+      </div>
+      <div class="step">
+        <p><strong>Select "Formal target, month by month".</strong> 95% every month, no tolerance. Notice the chart: the target sits far above it.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the formal target</span>3 green, 13 amber, 14 red   becomes   0 green, 0 amber, 30 red.
+Every setting on the bench with the formal target prints 0 green.</div>
+      </div>
+      <div class="step">
+        <p><strong>Select "Interim target, month by month", then drag the tolerance band from 0 to 5 points, one step at a time.</strong> Write down the green count at each step.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · the band, step by step</span>0 points: 0 green    1 point:  1 green    2 points: 3 green
+3 points: 8 green    4 points: 16 green   5 points: 21 green
+Green while declining: 0, 0, 0, 0, 3, 7</div>
+      </div>
+      <div class="step">
+        <p><strong>Select "Trend only, 6 months".</strong> The rule now ignores the target and looks only at direction.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · trend only</span>17 green, 2 amber, 11 red. 0 green while declining,
+by construction: a trend rule cannot be green while falling.
+The same months against the interim milestone, no band: 0 green.</div>
+      </div>
+      <div class="step">
+        <p><strong>Select "Level and trend together".</strong> Green only when the level and the trend are both green.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · combined</span>3 green, 10 amber, 17 red. 0 green while declining.</div>
+      </div>
+      <div class="step">
+        <p><strong>Select "Green-by-rule".</strong> The anti-lever: interim milestone and a 5-point band. Count the ▼ marks under the strip.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · the anti-lever</span>21 green, 9 amber, 0 red.
+7 months are green while the 6-month trend is down
+half a point or more. 21 is the most greens any setting prints.</div>
+      </div>
+      <div class="step">
+        <p><strong>Back to "Interim target, 2-point tolerance". Tick "Latest month only".</strong> The break button: what a board sees when the paper reports one month.</p>
+        <div class="prompt-box good"><span class="label">★ Step 7 · the break button</span>Latest month only. A board shown September 2026 alone sees
+one RED: 74.4% against the 82.0% milestone. The series it does
+not see: 3 green, 13 amber, 14 red over 30 months, and
+-2.75 points over the last 6 months.</div>
+      </div>
+      <div class="step">
+        <p><strong>Keep the break on. Select "Trend only, 6 months", then set the trend window to 9 months, then to 3.</strong> Watch the latest month's colour.</p>
+        <div class="prompt-box good"><span class="label">★ Step 8 · the window is a choice</span>6 months: September 2026 is RED, -2.75 points.
+9 months: September 2026 is GREEN, +0.52 points.
+3 months: September 2026 is RED, -0.66 points.</div>
+      </div>
+      <div class="step">
+        <p><strong>Untick the break. Pick the rule you would defend for one KPI in your own pack</strong>, and write the sentence a director could read in the paper.</p>
+        <div class="prompt-box good"><span class="label">★ Step 9 · your rule, in one sentence</span>Your numbers will differ. Write down:
+  target:             (formal or interim, and which)
+  tolerance band:     (points, and who agreed it)
+  trend window:       (months, and why that many)
+  "Green means ... ; amber means ... ; red means ..."</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Read it in this order.</strong> The verdict line first, then the strip, then the comparison table. The strongest lesson is not any one count: it is that one honest series prints 0 greens or 21 greens depending only on the rule, and that the rule which prints the most greens is also the one that hides months getting worse. The project-status version of this, where amber means what the team agreed it means, is in <a href="https://phoebefu6.github.io/learn-ai-project-management-with-phoebe/courses/b6-status-report-simulator.html">AI Project Management, The status report ↗</a>; this bench is about a KPI over time.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers what the rules show</span>
+      <h2>The band and the window are decisions</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Every number on the bench is real, and every colour is honest under its own rule. That is exactly the problem a director faces: two papers can describe the same performance in green and in red, and neither has lied. The difference sits in the tolerance band and the trend window, which rarely appear in the paper at all.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Green months out of 30 under the interim milestone as the tolerance band widens from 0 to 5 points: 0, 1, 3, 8, 16, 21. Months green while declining over a 6-month window: 0, 0, 0, 0, 3, 7.">
+        <defs>
+          <filter id="p4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p4cH { font: 800 12px Inter, sans-serif; fill: #1C2033; }
+          .p4cL { font: 600 12px Inter, sans-serif; fill: #1C2033; }
+          .p4cS { font: 400 11px Inter, sans-serif; fill: #585D72; }
+          .p4cV { font: 800 12px Inter, sans-serif; fill: #2A3156; }
+          .p4cR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p4cN { font: 400 12px Inter, sans-serif; fill: #585D72; }
+        </style>
+
+        <text class="p4cH" x="30" y="26">WIDEN THE BAND, COUNT THE GREENS · interim milestone, level rule</text>
+
+        <g filter="url(#p4cSk)" fill="none" stroke="#1C2033" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M150 220 L830 220"/>
+          <rect x="175" y="217" width="50" height="3" rx="1" fill="#276A43"/>
+          <rect x="285" y="213" width="50" height="7" rx="2" fill="#276A43"/>
+          <rect x="395" y="199" width="50" height="21" rx="3" fill="#276A43"/>
+          <rect x="505" y="164" width="50" height="56" rx="4" transform="rotate(-0.5 530 192)" fill="#276A43"/>
+          <rect x="615" y="108" width="50" height="112" rx="4" transform="rotate(0.4 640 164)" fill="#276A43"/>
+          <rect x="725" y="73" width="50" height="147" rx="4" transform="rotate(-0.4 750 146)" fill="#7A5C12"/>
+        </g>
+
+        <text class="p4cS" x="30" y="150">greens of 30</text>
+        <text class="p4cV" x="200" y="208" text-anchor="middle">0</text>
+        <text class="p4cV" x="310" y="204" text-anchor="middle">1</text>
+        <text class="p4cV" x="420" y="190" text-anchor="middle">3</text>
+        <text class="p4cV" x="530" y="154" text-anchor="middle">8</text>
+        <text class="p4cV" x="640" y="98" text-anchor="middle">16</text>
+        <text class="p4cV" x="750" y="63" text-anchor="middle">21</text>
+        <text class="p4cL" x="200" y="240" text-anchor="middle">0 pt</text>
+        <text class="p4cL" x="310" y="240" text-anchor="middle">1 pt</text>
+        <text class="p4cL" x="420" y="240" text-anchor="middle">2 pt</text>
+        <text class="p4cL" x="530" y="240" text-anchor="middle">3 pt</text>
+        <text class="p4cL" x="640" y="240" text-anchor="middle">4 pt</text>
+        <text class="p4cL" x="750" y="240" text-anchor="middle">5 pt</text>
+
+        <text class="p4cS" x="30" y="272">green while declining</text>
+        <text class="p4cS" x="200" y="272" text-anchor="middle">0</text>
+        <text class="p4cS" x="310" y="272" text-anchor="middle">0</text>
+        <text class="p4cS" x="420" y="272" text-anchor="middle">0</text>
+        <text class="p4cS" x="530" y="272" text-anchor="middle">0</text>
+        <text class="p4cR" x="640" y="272" text-anchor="middle">3</text>
+        <text class="p4cR" x="750" y="272" text-anchor="middle">7</text>
+
+        <text class="p4cN" x="30" y="304">Real rows, 30 rated months, 6-month trend window. Bar heights to scale, 7 px per month.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - each extra point of tolerance buys greens, and past 3 points it starts buying green months that were falling</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>A wide band does not just add greens<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>From 0 to 3 points, widening the band turns reds into ambers and a few ambers into greens, and none of those greens is a falling month. At 4 points, 3 green months are falling; at 5 points, 7 are. Under the 5-point band the falling greens include January 2025 at 73.0%, down 2.21 points on six months earlier, and February 2025 at 73.5%, down 2.87. Hover any cell on the strip to read its month, share and change. A director reading green in those months would have had no reason to ask.</p>
+        <p>Practitioners call a status that is green outside and red inside a watermelon. It is slang; no governance body defines it. The bench counts the concrete version: green under the rule while the trailing trend is down half a point or more.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Trend-only answers a different question<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Trend-only prints 17 greens on months that, against the interim milestone with no band, print 0. It is not lying: it answers "is it getting better?", not "is it good enough?". A board needs both answers, which is why the combined rule exists, and why its 3 greens match the level rule's 3 at the same band. Combining did not add greens; it turned 3 of the level rule's ambers red, because those months were falling.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The colour flips when the number does not.</strong> NHS England's Making data count (2019, read at source) shows an indicator that varies randomly around its target and, in a RAG report, "would flip between red and green" from month to month. Its answer is a statistical process control chart, which separates noise from a real shift. The bench does not teach that method; it is the strongest alternative to RAG named by a public body, and worth a self-study hour.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the anti-lever, the break button and the bench's limits</span>
+      <h2>Green-by-rule, one month, and what the bench cannot tell you</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">A bench that can only report good news measures nothing. This one has two ways to make the picture worse: the anti-lever picks the rule that prints the most greens, and the break button shows the board one month instead of the series.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two panels. Left, the anti-lever green-by-rule against the default rule: greens go from 3 to 21, green while declining from 0 to 7, reds from 14 to 0. Right, the break, latest month only: the board sees one red month, 74.4 percent; the series has 3 green, 13 amber and 14 red months and fell 2.75 points over 6 months.">
+        <defs>
+          <filter id="p4dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p4dH { font: 800 12px Inter, sans-serif; fill: #1C2033; }
+          .p4dS { font: 400 11px Inter, sans-serif; fill: #585D72; }
+          .p4dL { font: 600 12px Inter, sans-serif; fill: #1C2033; }
+          .p4dR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p4dN { font: 400 12px Inter, sans-serif; fill: #585D72; }
+        </style>
+
+        <text class="p4dH" x="30" y="30">TWO WAYS TO MAKE THE PICTURE WORSE · against the default rule</text>
+
+        <g filter="url(#p4dSk)" fill="none" stroke="#1C2033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="50" width="390" height="180" rx="12" transform="rotate(-0.4 235 140)" fill="#FEF2F2" stroke="#FCA5A5"/>
+          <rect x="450" y="50" width="390" height="180" rx="12" transform="rotate(0.4 645 140)" fill="#FEF2F2" stroke="#FCA5A5"/>
+        </g>
+
+        <text class="p4dR" x="58" y="84">Anti-lever: green-by-rule</text>
+        <text class="p4dL" x="58" y="114">Green months: 3, now 21</text>
+        <text class="p4dL" x="58" y="134">Green while declining: 0, now 7</text>
+        <text class="p4dL" x="58" y="154">Red months: 14, now 0</text>
+        <text class="p4dS" x="58" y="190">interim milestone, 5-point band:</text>
+        <text class="p4dS" x="58" y="206">no real month changed, only the rule</text>
+
+        <text class="p4dR" x="468" y="84">Break: the latest month only</text>
+        <text class="p4dL" x="468" y="114">The board sees: one red, 74.4%</text>
+        <text class="p4dL" x="468" y="134">The series: 3 green, 13 amber, 14 red</text>
+        <text class="p4dL" x="468" y="154">Last 6 months: -2.75 points</text>
+        <text class="p4dS" x="468" y="190">the colour is right and still says</text>
+        <text class="p4dS" x="468" y="206">nothing about the direction</text>
+
+        <text class="p4dN" x="30" y="268">Real rows, NHS England. Default rule: interim milestone, 2-point band, 6-month window.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a generous rule turns 14 reds into 0, and a one-month report hides a 2.75-point fall even when it is honestly red</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The anti-lever, honestly sized<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Green-by-rule is not an invented trick. A band of several points below an interim milestone is the kind of tolerance a reporting team can propose with a straight face, and each step to it was reasonable on its own. Of the 108 settings the bench can take, it prints the most greens, 21, and it is the only preset with green months that were falling, 7 of them. The defensible claim is that one: the rule that maximises green is the rule that hides deterioration. It is not that a wide band is always wrong; a band agreed in advance, written in the paper and applied the same way every month is a legitimate choice the board can test.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The break button: right colour, missing story<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Under the default rule September 2026 is red, and a one-line status that says "red" is accurate. What it leaves out is that the number fell 2.75 points in six months, from 77.1% in March 2026. Under green-by-rule the same one line says amber. With a 9-month trend window, trend-only calls it green, because December 2025 was lower still. One month plus one rule hands the board a colour and keeps the direction for the paper's author. Show the series, or at least the trend beside the colour, and say which window you used.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the bench leaves out<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The half-point trend threshold, the window lengths and the band steps are the bench's choices, labelled on the widget, not anyone's standard. A two-point difference between one month and another is a crude trend; it can flip on a single unusual month, which is the noise problem Making data count describes. The series is national; a trust or a ward could look very different. And no rule on the bench is the right one: the evidence that any RAG rule improves board decisions was not found for this build.</p>
+        <p>What survives these limits is the reporting lesson, and it fits the governance texts from session 1: directors must act "on a fully informed basis" (OECD 2023, V.A, read at source), and the board presents a "fair, balanced and understandable" assessment (FRC Code 2024, Principle N, read at source). A rule nobody wrote down cannot be tested by anyone.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Constructed Fernhollow Freight example.</strong> Fernhollow's pack shows on-time delivery as green. At the last meeting Tomasz Wexley, who chairs the audit and risk committee, asked one question: "What rule makes it green?" Nobody in the room knew the band. Sunniva's paper for the customer-record decision will carry three numbers with their rule written under each, which is session 6's capstone.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find the rule behind one RAG status in your own pack.</strong> Target, band, window. If nobody can tell you, that is your finding.</li>
+      <li><strong>Recolour it.</strong> Apply the default rule from the bench to the last twelve months of that KPI by hand: how many greens, and how many of them were falling?</li>
+      <li><strong>Write the rule sentence</strong> from step 9 for that KPI, short enough to sit under the number in a board paper.</li>
+      <li><strong>Draft the question</strong> a director like Tomasz would ask about it, and your one-line answer. Bring both to session 5.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · The same 30 real months print 0 greens under one rule and 21 under another. What changed?</p>
+      <button class="qopt" type="button">A · NHS England revised the data between the two runs</button>
+      <button class="qopt" type="button">B · Only the rule: the target, the tolerance band and the trend window</button>
+      <button class="qopt" type="button">C · The bench adds random noise to each run</button>
+      <button class="qopt" type="button">D · The green-by-rule preset uses a different, better data source</button>
+      <p class="qwhy">Every run reads the same rows from one published file, and nothing on the bench is random. The colour is the number passed through a rule; change the rule and the colour moves while the number stays put.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · Under green-by-rule, 7 months are "green while declining". What does that count mean?</p>
+      <button class="qopt" type="button">A · Seven months met the formal 95% target</button>
+      <button class="qopt" type="button">B · Seven months were missing from the data</button>
+      <button class="qopt" type="button">C · Seven months improved by more than half a point</button>
+      <button class="qopt" type="button">D · Seven months were green under the rule while the share had fallen half a point or more over the previous six months</button>
+      <p class="qwhy">No rated month comes near 95%, and none is missing. The count is green status AND a trailing 6-month fall of at least 0.5 points: a falling number painted green. The default rule has none.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · With the break on, September 2026 is red with a 6-month window and green with a 9-month window under trend-only. What is the right reading?</p>
+      <button class="qopt" type="button">A · The window is a choice that can flip the latest colour, so the paper should state the window and show the trend beside the colour</button>
+      <button class="qopt" type="button">B · The 9-month window is correct because it is longer</button>
+      <button class="qopt" type="button">C · The bench is broken, because a month can only have one colour</button>
+      <button class="qopt" type="button">D · Trend rules should never be used in board papers</button>
+      <p class="qwhy">Over six months the share fell 2.75 points; over nine it rose 0.52, because December 2025 was lower still. Neither window is the true one. The professional move is to say which you used and let the board see the series.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">NHS England (2026), A&amp;E Attendances and Emergency Admissions, Monthly A&amp;E Time Series September 2026</span><span class="note">Read at source; the real rows, Performance sheet, England, all types; Open Government Licence v3.0</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">NHS England planning documents: UEC delivery plan (2023), 2024/25 and 2025/26 planning guidance, medium term planning framework (2025)</span><span class="note">Read at source; the 76%, 78%, 78% and 82% milestones and the 95% standard</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">NAO (2026), Managing the flow of patients through hospital from A&amp;E, HC 588</span><span class="note">Report page read; 74.9% in 2025-26 and 95.7% in 2013-14, used to check the rows</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">NHS England and NHS Improvement (2019), Making data count: Strengthening your decisions</span><span class="note">Read at source; the limits of RAG and the flip between red and green</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Infrastructure and Projects Authority (2024), Annual Report 2023-24</span><span class="note">Read at source; ratings as a snapshot in time, the scale cut from five points to three</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The tolerance band, the half-point trend threshold and the trend window</span><span class="note">Conventions and assumptions stated on the widget; the Python reference and the browser engine agree on every value</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Fernhollow Freight and its board</span><span class="note">Constructed for teaching; no number about it is a measurement</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>A colour is a rule</b><span>Number, target, tolerance, window. Change any one and the colour moves.</span></div>
+      <div class="cheat-item"><b>Which target</b><span>Formal 95%: 0 greens. Interim milestone, no band: 0 greens. Say which you used.</span></div>
+      <div class="cheat-item"><b>The band buys greens</b><span>0 to 5 points: 0, 1, 3, 8, 16, 21 greens. Past 3 points it buys falling greens too.</span></div>
+      <div class="cheat-item"><b>The anti-lever</b><span>Green-by-rule: 21 green, 7 of the 30 months green while falling. Most greens, least truth.</span></div>
+      <div class="cheat-item"><b>The break button</b><span>One month is a colour; the series is the story. September 2026: red, and -2.75 points in six months.</span></div>
+      <div class="cheat-item"><b>Write the rule down</b><span>"Green means ..." under the number, agreed in advance, applied the same way every month.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The bench showed what a director can ask about a single colour. Session 5 is the questions themselves: assurance, challenge and strategy, how to anticipate them from your own paper, how to say "I don't know" and follow up in writing, and how to talk to the chair before the meeting rather than during it.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 4 of 6 · learn-presenting-to-a-board-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="03-which-numbers-belong.html">← Prev: Which numbers belong</a> &nbsp;·&nbsp; <a href="05-the-questions-you-will-be-asked.html">Next: The questions you will be asked →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/brd-sample.js?v=1"></script>
+<script src="../assets/brd-live.js?v=2"></script>
+<script src="../assets/app.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Six sessions for data and AI leaders with a board or committee slot: what a board is for, the board paper and the pack, which numbers belong, a RAG rule bench computed on real NHS England rows, the questions you will be asked, and the ten-minute slot. Free, by Phoebe Fu.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn Presenting to a Board with Phoebe">
+<meta property="og:description" content="Numbers in the boardroom: what to show, what to withhold, and the questions you will be asked.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Presenting to a Board with Phoebe">
+<meta name="twitter:description" content="Numbers in the boardroom: what to show, what to withhold, and the questions you will be asked. A RAG rule bench on real public rows.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-presenting-to-a-board-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn Presenting to a Board with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=3">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(var(--shadow-rgb),.16); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo-deep); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--indigo-50)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .not-this { border: 1px solid var(--hairline); border-left: 4px solid var(--clay); border-radius: var(--radius); background: #fff; padding: 1.1rem 1.3rem; margin-top: 1.2rem; }
+  .not-this h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · Communication</div>
+    <h1>Learn <span class="accent">Presenting to a Board</span> with Phoebe</h1>
+    <p class="sub">Numbers in the boardroom: what to show, what to withhold, and the questions you will be asked. Six sessions for data and AI leaders who get a slot at a board or a board committee: what a board is for and what its directors answer for, the paper and the pack, which numbers belong and how to withhold detail without ever withholding the truth, a bench that recolours real public data under the rules boards use, the questions that follow, and the ten minutes themselves. One constructed running case, a logistics company's head of data asking her board to approve a customer-data platform.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="6">6</b><span>sessions</span></div>
+      <div class="stat"><b data-count="30">30</b><span>real months on the bench</span></div>
+      <div class="stat"><b data-count="6">6</b><span>RAG rules to compare</span></div>
+      <div class="stat"><b data-count="10">10</b><span>minutes on the agenda</span></div>
+      <div class="stat"><b data-count="45">45</b><span>min per session</span></div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>The six sessions 🧭 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· from the board's job to the minutes</span></h2>
+      <p class="plede">The running case is <strong>Fernhollow Freight, a constructed mid-size logistics company</strong>, continued from Stakeholder Management and Executive Briefings with the same people. The CEO has approved Sunniva Holm's shared customer record; the spend is above her delegated limit, so the board has to decide, and Sunniva has ten minutes on the agenda in front of a chair, an audit and risk chair and a non-executive who knows depots. Fernhollow and everyone in it are invented for teaching, and every page says so.</p>
+    </div>
+    <div class="course-grid">
+      <a class="course-card" href="courses/01-what-a-board-is-for.html" style="--diff:#34D399">
+        <span class="cicon">🏛️</span>
+        <span class="cnum">Session 1 · foundations</span>
+        <h3>What a board is for</h3>
+        <p>Oversight, not management; the duties in the Companies Act and the governance code that sit behind every director's question; and whether your item is for decision, discussion or noting.</p>
+        <span class="meta"><span class="pill amber">▶ Start here</span></span>
+      </a>
+      <a class="course-card" href="courses/02-the-board-paper-and-the-pack.html" style="--diff:#FBBF24">
+        <span class="cicon">📑</span>
+        <span class="cnum">Session 2 · core</span>
+        <h3>The board paper and the pack</h3>
+        <p>The cover sheet, the executive summary and the appendix; what the FRC guidance asks of a board paper; and when the pack has to reach the directors.</p>
+        <span class="meta"><span class="pill">the paper</span></span>
+      </a>
+      <a class="course-card" href="courses/03-which-numbers-belong.html" style="--diff:#FBBF24">
+        <span class="cicon">🔢</span>
+        <span class="cnum">Session 3 · core</span>
+        <h3>Which numbers belong</h3>
+        <p>KPI or operational detail, trend against target and tolerance, materiality and risk appetite, and the line between withholding detail and withholding the truth.</p>
+        <span class="meta"><span class="pill">three numbers, not thirty</span></span>
+      </a>
+      <a class="course-card" href="courses/04-the-rag-rule-bench.html" style="--diff:#F87171">
+        <span class="cicon">🚦</span>
+        <span class="cnum">Session 4 · bench night</span>
+        <h3>The RAG rule bench</h3>
+        <p>Thirty real months of NHS England's four-hour A&amp;E figure, recoloured under six rules in your browser: 0 greens or 21, the green months that were falling, and what one month hides.</p>
+        <span class="meta"><span class="pill amber">★ the bench</span></span>
+      </a>
+      <a class="course-card" href="courses/05-the-questions-you-will-be-asked.html" style="--diff:#FB923C">
+        <span class="cicon">❓</span>
+        <span class="cnum">Session 5 · deeper</span>
+        <h3>The questions you will be asked</h3>
+        <p>Assurance, challenge and strategic questions, anticipated from your own pack; answering "I don't know" well and following up in writing; and pre-wiring the chair.</p>
+        <span class="meta"><span class="pill">five questions, answered</span></span>
+      </a>
+      <a class="course-card" href="courses/06-the-ten-minute-slot-and-after.html" style="--diff:#FB923C">
+        <span class="cicon">⏳</span>
+        <span class="cnum">Session 6 · deeper</span>
+        <h3>The ten-minute slot, and after</h3>
+        <p>Speak to the paper, do not read it; the minutes and the action log; following up. Capstone: Sunniva's slot assembled, from cover sheet to five expected questions.</p>
+        <span class="meta"><span class="pill amber">🔒 the slot</span></span>
+      </a>
+    </div>
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>foundations</span>
+      <span><i style="background:#FBBF24"></i>core</span>
+      <span><i style="background:#FB923C"></i>deeper</span>
+      <span><i style="background:#F87171"></i>bench night</span>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Six stamps means you can say what the board is for, write the paper and the cover sheet, choose the numbers and their rules, test a RAG status the way a sceptical director would, answer the questions that follow, and run the ten minutes and the follow-up. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+  <section class="section">
+    <div class="not-this">
+      <h3>What this is not, so you land in the right place 🧭</h3>
+      <table class="clean">
+        <tr><th>If your question is</th><th>Go here instead</th></tr>
+        <tr><td>Who decides, and what are they measured on and afraid of?</td><td><a href="https://phoebefu6.github.io/learn-stakeholder-management-with-phoebe/">Stakeholder Management ↗</a></td></tr>
+        <tr><td>How do I write the one-page memo itself?</td><td><a href="https://phoebefu6.github.io/learn-executive-briefings-with-phoebe/">Executive Briefings ↗</a></td></tr>
+        <tr><td>How do I build the funding case for a data strategy?</td><td><a href="https://phoebefu6.github.io/learn-data-strategy-with-phoebe/courses/05-funding-and-value-tracking.html">Data Strategy, Funding and value tracking ↗</a></td></tr>
+        <tr><td>Why is data governance a board issue at all?</td><td><a href="https://phoebefu6.github.io/learn-data-governance-with-phoebe/courses/e1-board-issue.html">Data Governance, Why data governance is a board issue ↗</a></td></tr>
+        <tr><td>Slides, nerves, pace and rehearsal</td><td><a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Public Speaking ↗</a></td></tr>
+        <tr><td>A project status report for a steering committee</td><td><a href="https://phoebefu6.github.io/learn-ai-project-management-with-phoebe/courses/b6-status-report-simulator.html">AI Project Management, The status report ↗</a></td></tr>
+        <tr><td><strong>I have a slot at a board or committee, and the numbers, the paper and the questions have to hold up.</strong></td><td><strong>you are in the right place</strong></td></tr>
+      </table>
+      <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)"><strong>The board, for the person presenting to it.</strong> Writing the page, building the funding case, slide craft and delivery are taught next door and linked rather than repeated. The law quoted is UK company law and the UK Corporate Governance Code, with the G20/OECD Principles as the international reference; check your own jurisdiction. Pressure on these pages means workload and planning, never medical or clinical advice; for the body side, see the movement and wellbeing courses planned on the <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe hub ↗</a>.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Three doors into the same conviction: a board can only oversee what it is shown, so show it what it needs and say how you chose.</p>
+      <div class="path"><b>📅 My slot is next month</b>
+        <a class="pstep" href="courses/01-what-a-board-is-for.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-the-board-paper-and-the-pack.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-the-questions-you-will-be-asked.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-the-ten-minute-slot-and-after.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">the item, the paper, the questions, the slot</span>
+      </div>
+      <div class="path"><b>📊 I own the KPI pack</b>
+        <a class="pstep" href="courses/03-which-numbers-belong.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-rag-rule-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-the-questions-you-will-be-asked.html">5</a>
+        <span style="font-size:.82rem;color:var(--muted)">which numbers, which rule, which questions</span>
+      </div>
+      <div class="path"><b>🧭 The whole craft</b>
+        <a class="pstep" href="courses/01-what-a-board-is-for.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-the-board-paper-and-the-pack.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/03-which-numbers-belong.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-rag-rule-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-the-questions-you-will-be-asked.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-the-ten-minute-slot-and-after.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">from the board's job to the minutes</span>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is honest here 🧾</h2>
+      <p class="plede">Boardroom advice travels with famous numbers and sayings, and several have no source behind them. Each claim on these pages carries its status.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>Every red, amber and green on the bench, and every count of them</td><td><strong>Really computed</strong> in your browser from NHS England's published monthly rows, under a rule printed on the widget</td></tr>
+      <tr><td>The tolerance band, the trend threshold and the trend window</td><td><strong>Conventions,</strong> chosen and labelled; no standard defines a RAG rule</td></tr>
+      <tr><td>Directors' duties and the governance code</td><td><strong>Read at source:</strong> Companies Act 2006 sections 172 to 174, the UK Corporate Governance Code 2024, the G20/OECD Principles 2023</td></tr>
+      <tr><td>"Board packs average N pages", "directors spend X hours reading the pack"</td><td><strong>Reported:</strong> vendor and survey figures, quoted with who reported them; two surveys in 2024 and 2026 disagree on whether packs work</td></tr>
+      <tr><td>"Never bring a problem without a solution"</td><td><strong>Opinion,</strong> no traceable origin; the FRC's guidance warns against bringing matters for sign-off rather than debate</td></tr>
+      <tr><td>Fernhollow Freight, its board and every Fernhollow number</td><td><strong>Constructed,</strong> for teaching</td></tr>
+    </table>
+  </section>
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">The whole path at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+  <footer class="pagefoot">
+    <span>learn-presenting-to-a-board-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Neighbours on the shelf: <a href="https://phoebefu6.github.io/learn-executive-briefings-with-phoebe/">Executive Briefings ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-stakeholder-management-with-phoebe/">Stakeholder Management ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Public Speaking ↗</a></span>
+  </footer>
+</main>
+<script>
+window.MINDMAP_DATA = {
+ "title": "Presenting\nto a Board",
+ "centerColor": "#2A3156",
+ "sessions": [
+  {
+   "label": "What a board\nis for",
+   "href": "courses/01-what-a-board-is-for.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "Oversight, not managing",
+     "href": "courses/01-what-a-board-is-for.html"
+    },
+    {
+     "label": "Duties behind questions",
+     "href": "courses/01-what-a-board-is-for.html"
+    },
+    {
+     "label": "Decision or noting",
+     "href": "courses/01-what-a-board-is-for.html"
+    }
+   ]
+  },
+  {
+   "label": "The board paper\nand the pack",
+   "href": "courses/02-the-board-paper-and-the-pack.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "The cover sheet",
+     "href": "courses/02-the-board-paper-and-the-pack.html"
+    },
+    {
+     "label": "Summary and appendices",
+     "href": "courses/02-the-board-paper-and-the-pack.html"
+    },
+    {
+     "label": "When the pack goes out",
+     "href": "courses/02-the-board-paper-and-the-pack.html"
+    }
+   ]
+  },
+  {
+   "label": "Which numbers\nbelong",
+   "href": "courses/03-which-numbers-belong.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "KPI or detail",
+     "href": "courses/03-which-numbers-belong.html"
+    },
+    {
+     "label": "Target and tolerance",
+     "href": "courses/03-which-numbers-belong.html"
+    },
+    {
+     "label": "Detail, never the truth",
+     "href": "courses/03-which-numbers-belong.html"
+    }
+   ]
+  },
+  {
+   "label": "The RAG rule\nbench",
+   "href": "courses/04-the-rag-rule-bench.html",
+   "color": "#F87171",
+   "concepts": [
+    {
+     "label": "One number, three rules",
+     "href": "courses/04-the-rag-rule-bench.html"
+    },
+    {
+     "label": "Green-by-rule",
+     "href": "courses/04-the-rag-rule-bench.html"
+    },
+    {
+     "label": "Latest month only",
+     "href": "courses/04-the-rag-rule-bench.html"
+    }
+   ]
+  },
+  {
+   "label": "The questions\nyou will be asked",
+   "href": "courses/05-the-questions-you-will-be-asked.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Assurance or challenge",
+     "href": "courses/05-the-questions-you-will-be-asked.html"
+    },
+    {
+     "label": "Saying I don't know",
+     "href": "courses/05-the-questions-you-will-be-asked.html"
+    },
+    {
+     "label": "Pre-wiring the chair",
+     "href": "courses/05-the-questions-you-will-be-asked.html"
+    }
+   ]
+  },
+  {
+   "label": "The ten-minute\nslot, and after",
+   "href": "courses/06-the-ten-minute-slot-and-after.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Speak to the paper",
+     "href": "courses/06-the-ten-minute-slot-and-after.html"
+    },
+    {
+     "label": "Minutes and actions",
+     "href": "courses/06-the-ten-minute-slot-and-after.html"
+    },
+    {
+     "label": "Sunniva's slot",
+     "href": "courses/06-the-ten-minute-slot-and-after.html"
+    }
+   ]
+  }
+ ]
+};
+</script>
+<script src="assets/mindmap.js?v=1"></script>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>
